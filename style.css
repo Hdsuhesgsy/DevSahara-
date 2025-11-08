@@ -7,14 +7,16 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    color: #333;
     line-height: 1.6;
+    direction: ltr;
 }
 
 header {
     text-align: center;
     padding: 2rem;
     background: rgba(0, 0, 0, 0.3);
+    color: white;
 }
 
 nav {
@@ -43,11 +45,39 @@ main {
 }
 
 section {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
     margin: 2rem 0;
     border-radius: 10px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.regions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.region {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.contribution-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.step {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
 }
 
 button {
@@ -58,9 +88,45 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1.1rem;
-    margin: 1rem 0;
+    margin: 0.5rem;
+    transition: background 0.3s;
 }
 
 button:hover {
     background: #ff5252;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left: 4px solid #764ba2;
+}
+
+.project-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .regions,
+    .contribution-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    nav a {
+        display: block;
+        margin: 0.5rem 0;
+    }
 }
