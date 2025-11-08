@@ -153,7 +153,7 @@ class ProfileSystem {
             'cn': 'China 🇨🇳',
             'jp': 'Japan 🇯🇵',
             'kr': 'Korea 🇰🇷',
-            'sa': 'Saudi Arabia 🇸🇦',
+            'sa': 'Saudi Arabia ',
             'ae': 'UAE 🇦🇪'
         };
         return countries[code] || 'Unknown Country';
