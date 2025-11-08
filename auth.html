@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join DevSahara - African & Asian Developers</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-container {
+            max-width: 400px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .auth-tab.active {
+            border-bottom-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .auth-form {
+            display: none;
+        }
+        .auth-form.active {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .country-flag {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 Join DevSahara Community</h1>
+        <p>Connect with African & Asian developers worldwide</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="ai-assistant.html">AI Assistant</a>
+        <a href="projects.html">Projects</a>
+        <a href="auth.html" class="active">Join Community</a>
+    </nav>
+
+    <main>
+        <div class="auth-container fade-in-up">
+            <div class="auth-tabs">
+                <div class="auth-tab active" onclick="showTab('login')">Login</div>
+                <div class="auth-tab" onclick="showTab('register')">Register</div>
+            </div>
+
+            <!-- نموذج الدخول -->
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login-password" placeholder="Your password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">
+                    <span>Sign In</span>
+                </button>
+                <p style="text-align: center; margin-top: 1rem;">
+                    <a href="#" style="color: var(--primary-color);">Forgot password?</a>
+                </p>
+            </form>
+
+            <!-- نموذج التسجيل -->
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="register-name" placeholder="Your full name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="register-email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="register-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <select id="register-country" required>
+                        <option value="">Select your country</option>
+                        <option value="ma">🇲🇦 Morocco</option>
+                        <option value="dz">🇩🇿 Algeria</option>
+                        <option value="tn">🇹🇳 Tunisia</option>
+                        <option value="eg">🇪🇬 Egypt</option>
+                        <option value="ng">🇳🇬 Nigeria</option>
+                        <option value="ke">🇰🇪 Kenya</option>
+                        <option value="za">🇿🇦 South Africa</option>
+                        <option value="sn">🇸🇳 Senegal</option>
+                        <option value="in">🇮🇳 India</option>
+                        <option value="pk">🇵🇰 Pakistan</option>
+                        <option value="cn">🇨🇳 China</option>
+                        <option value="jp">🇯🇵 Japan</option>
+                        <option value="kr">🇰🇷 Korea</option>
+                        <option value="sa"> Saudi Arabia</option>
+                        <option value="ae">🇦🇪 UAE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Skills (comma separated)</label>
+                    <input type="text" id="register-skills" placeholder="JavaScript, Python, React, etc.">
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">
+                    <span>Create Account</span>
+                </button>
+            </form>
+
+            <!-- فوائد الانضمام -->
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--gradient-light); border-radius: 15px;">
+                <h3 style="text-align: center; margin-bottom: 1rem;">Why Join DevSahara?</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0;">✅ Connect with 1,250+ developers</li>
+                    <li style="padding: 0.5rem 0;">✅ Collaborate on real projects</li>
+                    <li style="padding: 0.5rem 0;">✅ Get AI-powered coding help</li>
+                    <li style="padding: 0.5rem 0;">✅ Find job opportunities</li>
+                    <li style="padding: 0.5rem 0;">✅ Join regional communities</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DevSahara - African & Asian Developers Community</p>
+    </footer>
+
+    <script src="auth.js"></script>
+</body>
+                  </html>
