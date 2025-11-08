@@ -1,30 +1,51 @@
-# DevSahara
+# DevSahara - African & Asian Developers Platform
 
-🌍 **DevSahara - منصة المطورين العالمية المتقدمة**
+## 🌍 Vision
+A collaborative platform exclusively for software developers from Africa and Asia to build, share, and grow together.
 
-**"واحة المطورين العالميين - حيث تلتقي الأفكار العظيمة في فضاء رقمي"**
+## 🎯 Mission
+To create an independent technological ecosystem that fosters collaboration and innovation among developers in our regions.
 
-## 🎯 الرؤية والأهداف
-منصة تعاونية مفتوحة المصدر للمطورين من حول العالم 🌎، مع تركيز خاص على المنافسة مع المنصات العالمية المتقدمة في مجال البرمجة والتعاون.
+## 🌏 Target Regions
+### Africa
+- North Africa: Morocco, Algeria, Tunisia, Egypt, Libya, Sudan
+- West Africa: Nigeria, Ghana, Ivory Coast, Senegal, Mali
+- East Africa: Kenya, Ethiopia, Tanzania, Uganda, Rwanda
+- Central Africa: Congo, Cameroon, Angola, Chad
+- Southern Africa: South Africa, Zimbabwe, Zambia, Namibia
 
-## 🚀 كيفية المساهمة في المشروع
-نحن ندعو جميع المطورين المتحمسين للمساعدة في بناء DevSahara من خلال:
-- إضافة ميزات جديدة تنافس أفضل المنصات العالمية
-- تصحيح الأخطاء وتحسين الأداء
-- تحسين الواجهة والتجربة للمستخدمين العالميين
-- كتابة وتطوير التوثيق بلغات متعددة
+### Asia
+- South Asia: India, Pakistan, Bangladesh, Sri Lanka, Nepal
+- East Asia: China, Japan, Korea, Taiwan, Mongolia
+- Southeast Asia: Indonesia, Vietnam, Thailand, Malaysia, Philippines
+- West Asia: Saudi Arabia, UAE, Qatar, Oman, Yemen, Jordan
 
-### خطوات المساهمة:
-1. انسخ المشروع (Fork)
-2. أنشئ فرعًا جديدًا (`git checkout -b feature/اسم-الميزة-المتقدمة`)
-3. احفظ التغييرات (`git commit -m 'إضافة ميزة متقدمة'`)
-4. ارفع التغييرات (`git push origin feature/اسم-الميزة-المتقدمة`)
-5. أنشئ طلب دمج (Pull Request)
+## 🚫 Exclusion Policy
+This platform does not allow participation from developers based in:
+- Europe
+- North America
+- South America
+- Australia & Oceania
 
-## 🎯 أهدافنا العالمية:
-- منافسة منصات مثل GitHub و GitLab و Bitbucket
-- تقديم ميزات مبتكرة تلبي احتياجات المطورين المحترفين
-- بناء مجتمع تقني عالمي متميز
+## 🛠 Technology Stack
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: Node.js, Express
+- Database: MongoDB
+- Deployment: GitHub Pages
 
-## 📞 اتصل بنا
-- أنشئ (Issue) جديد لمناقشة الأفكار أو الإبلاغ عن مشاكل.
+## 🤝 How to Contribute
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 Code of Conduct
+We are committed to providing a friendly, safe, and welcoming environment for all African and Asian developers.
+
+## 📞 Contact
+- Create an Issue for discussions or bug reports
+- Join our growing community of developers
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
