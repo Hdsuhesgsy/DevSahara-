@@ -9,25 +9,75 @@
 <body>
     <header>
         <h1>🚀 DevSahara Projects</h1>
-        <p>Collaborate on amazing projects with African & Asian developers</p>
+        <p>Collaborate on innovative solutions for African & Asian communities</p>
     </header>
 
     <nav>
         <a href="index.html">Home</a>
         <a href="ai-assistant.html">AI Assistant</a>
         <a href="projects.html">Projects</a>
+        <a href="about.html">About</a>
+        <a href="contribute.html">Contribute</a>
     </nav>
 
     <main>
-        <section>
-            <h2>Featured Projects</h2>
-            <div id="projects-list">
-                <!-- Projects will be loaded here -->
+        <section class="fade-in-up">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2>Featured Projects</h2>
+                <p style="font-size: 1.2rem;">Join hands with developers across Africa and Asia to build the future</p>
             </div>
-            <button onclick="generateProjectIdea()" style="margin: 2rem 0;">💡 Get AI Project Idea</button>
-            <div id="ai-project-idea" style="display: none; background: #e8f5e8; padding: 1rem; border-radius: 8px; margin: 1rem 0;"></div>
+            
+            <div id="projects-list">
+                <!-- Projects will be loaded here by JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin: 3rem 0;">
+                <button onclick="generateProjectIdea()" class="btn">
+                    <span>💡 Get AI Project Idea</span>
+                </button>
+            </div>
+            
+            <div id="ai-project-idea" style="display: none; background: var(--gradient-light); padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid var(--success-color);">
+                <!-- AI project ideas will appear here -->
+            </div>
+        </section>
+
+        <!-- قسم إحصائيات المشاريع -->
+        <section class="fade-in-up">
+            <h2 style="text-align: center;">Project Statistics</h2>
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">89</div>
+                    <p>Active Projects</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1.2K</div>
+                    <p>Total Contributors</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <p>Countries Involved</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">94%</div>
+                    <p>Success Rate</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- دعوة للعمل -->
+        <section class="hero-section fade-in-up">
+            <h2>Ready to Make an Impact?</h2>
+            <p>Join our community of developers building solutions for African and Asian markets</p>
+            <button onclick="generateProjectIdea()" class="btn" style="margin-top: 1.5rem;">
+                <span>Start Your Project Journey</span>
+            </button>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2024 DevSahara - African & Asian Developers Community</p>
+    </footer>
 
     <script src="projects.js"></script>
 </body>
