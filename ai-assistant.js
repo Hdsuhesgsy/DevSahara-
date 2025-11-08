@@ -1,7 +1,6 @@
-// DevSahara AI Assistant - Complete AI Integration
+// DevSahara AI Assistant - Fixed Version
 class DevSaharaAI {
     constructor() {
-        this.apiKey = 'sk-your-free-deepseek-api-key';
         this.currentFeature = '';
         this.conversationHistory = [];
     }
@@ -12,16 +11,22 @@ class DevSaharaAI {
     }
 
     setupEventListeners() {
-        document.getElementById('user-input')?.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.sendMessage();
-            }
-        });
+        const userInput = document.getElementById('user-input');
+        if (userInput) {
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.sendMessage();
+                }
+            });
+        }
     }
 
     openFeature(feature) {
         this.currentFeature = feature;
-        document.getElementById('feature-content').style.display = 'block';
+        const featureContent = document.getElementById('feature-content');
+        if (featureContent) {
+            featureContent.style.display = 'block';
+        }
         this.clearChat();
         
         const welcomeMessages = {
@@ -31,59 +36,64 @@ class DevSaharaAI {
             'tech-chat': "Hello! I'm here to chat about any technical topic. What's on your mind?"
         };
 
-        this.addMessage(welcomeMessages[feature], 'ai');
+        this.addMessage(welcomeMessages[feature] || "Hello! How can I help you today?", 'ai');
     }
 
-    async sendMessage() {
+    sendMessage() {
         const input = document.getElementById('user-input');
-        const message = input.value.trim();
+        if (!input) return;
         
+        const message = input.value.trim();
         if (!message) return;
 
         this.addMessage(message, 'user');
         input.value = '';
 
+        // Show loading
         this.addMessage('Thinking...', 'ai');
 
-        try {
-            const response = await this.getAIResponse(message);
+        // Simulate AI response after delay
+        setTimeout(() => {
             this.removeLastMessage();
+            const response = this.generateSmartResponse(message);
             this.addMessage(response, 'ai');
-        } catch (error) {
-            this.removeLastMessage();
-            this.addMessage("I'm having trouble connecting right now. Here's a sample response based on your question: " + this.generateSmartResponse(message), 'ai');
-        }
+        }, 1000);
     }
 
     generateSmartResponse(userMessage) {
         const lowerMessage = userMessage.toLowerCase();
         
         if (lowerMessage.includes('javascript') || lowerMessage.includes('js')) {
-            return "For JavaScript projects, I recommend building a web app using modern frameworks like React or Vue.js. Consider creating a task management app or a weather dashboard that uses APIs.";
+            return "For JavaScript projects, I recommend building a web app using React or Vue.js. You could create a task management app, weather dashboard, or e-commerce site. For African/Asian markets, consider adding multi-language support and mobile money payment integration.";
         }
         
         if (lowerMessage.includes('python')) {
-            return "Great choice! Python is perfect for web development with Django/Flask, data analysis with Pandas, or automation scripts. You could build a PDF processor or a web scraper.";
+            return "Python is great for web development (Django/Flask), data analysis, or automation. Consider building a PDF processor, web scraper for local market data, or an API for mobile applications. Many African startups use Python for fintech solutions.";
         }
         
         if (lowerMessage.includes('project') || lowerMessage.includes('idea')) {
-            return "Based on African/Asian market needs, consider building: 1) Local payment integration system, 2) Multi-language e-commerce platform, 3) Mobile agriculture advisory app, 4) Community skill-sharing platform.";
+            return "Based on African/Asian market needs: 1) Mobile payment integration app, 2) Multi-language e-commerce platform, 3) Agricultural advisory system, 4) Local job matching platform, 5) Community skill-sharing network, 6) Mobile health information app.";
         }
         
         if (lowerMessage.includes('learn') || lowerMessage.includes('beginner')) {
-            return "Start with HTML/CSS/JavaScript fundamentals. Then choose a path: Frontend (React), Backend (Node.js/Python), or Mobile (React Native). Practice with small projects and gradually increase complexity.";
+            return "Start with HTML/CSS/JavaScript fundamentals (2-3 weeks). Then choose: Frontend (React, Vue), Backend (Node.js, Python), or Mobile (React Native). Build small projects weekly. Join African/Asian developer communities for support!";
+        }
+
+        if (lowerMessage.includes('error') || lowerMessage.includes('debug')) {
+            return "For debugging: 1) Check browser console for errors, 2) Use console.log() to trace values, 3) Test small parts individually, 4) Search Stack Overflow or developer forums. Share your code and I can help identify the issue!";
+        }
+
+        if (lowerMessage.includes('salary') || lowerMessage.includes('job')) {
+            return "Developer salaries in Africa/Asia vary by country and experience. Junior developers: $500-$1500/month, Mid-level: $1500-$3500, Senior: $3500+. Remote work with international companies often pays more. Focus on building a strong portfolio!";
         }
         
-        return "That's an interesting question! For developers in Africa and Asia, I recommend focusing on solutions that address local challenges like connectivity, payments, and multi-language support. What specific area are you most interested in?";
-    }
-
-    async getAIResponse(message) {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        return this.generateSmartResponse(message);
+        return "That's an interesting question! For developers in Africa and Asia, I recommend focusing on solutions that solve local challenges - connectivity, payments, education, healthcare, and agriculture. What specific area are you most interested in building for?";
     }
 
     addMessage(text, sender) {
         const messagesDiv = document.getElementById('chat-messages');
+        if (!messagesDiv) return;
+
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${sender}-message`;
         messageDiv.textContent = text;
@@ -95,6 +105,8 @@ class DevSaharaAI {
 
     removeLastMessage() {
         const messagesDiv = document.getElementById('chat-messages');
+        if (!messagesDiv) return;
+        
         const lastMessage = messagesDiv.lastElementChild;
         if (lastMessage) {
             messagesDiv.removeChild(lastMessage);
@@ -103,12 +115,15 @@ class DevSaharaAI {
 
     clearChat() {
         const messagesDiv = document.getElementById('chat-messages');
-        messagesDiv.innerHTML = '';
+        if (messagesDiv) {
+            messagesDiv.innerHTML = '';
+        }
         this.conversationHistory = [];
     }
 }
 
-let aiAssistant;
+// Global functions for HTML onclick events
+let aiAssistant = null;
 
 function openFeature(feature) {
     if (!aiAssistant) {
@@ -121,10 +136,30 @@ function openFeature(feature) {
 function sendMessage() {
     if (aiAssistant) {
         aiAssistant.sendMessage();
+    } else {
+        // Initialize if not already done
+        aiAssistant = new DevSaharaAI();
+        aiAssistant.init();
+        aiAssistant.sendMessage();
     }
 }
 
+// Initialize when page loads
 document.addEventListener('DOMContentLoaded', function() {
     aiAssistant = new DevSaharaAI();
     aiAssistant.init();
+    
+    // Check if there's a stored help request from projects page
+    const helpRequest = localStorage.getItem('aiHelpRequest');
+    if (helpRequest) {
+        openFeature('code-helper');
+        setTimeout(() => {
+            const input = document.getElementById('user-input');
+            if (input) {
+                input.value = helpRequest;
+                sendMessage();
+            }
+            localStorage.removeItem('aiHelpRequest');
+        }, 500);
+    }
 });
