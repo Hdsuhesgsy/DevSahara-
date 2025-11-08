@@ -120,6 +120,67 @@ function filterProjects(technology) {
     `).join('');
 }
 
+// FIXED Navigation event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Add click events ONLY to internal navigation links (that start with #)
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only prevent default for internal links (that start with #)
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const target = href.substring(1); // Remove the #
+                
+                if (target === 'home') showHome();
+                else if (target === 'projects') showProjects();
+                else if (target === 'about') showAbout();
+                else if (target === 'contribute') showContribute();
+            }
+            // External links (ai-assistant.html, projects.html, etc.) will work normally
+        });
+    });
+    
+    // Show home section by default
+    showHome();
+});
+
+// Welcome message
+console.log('Welcome to DevSahara - African & Asian Developers Platform');}
+
+// Function to join a project
+function joinProject(projectId) {
+    const project = projects.find(p => p.id === projectId);
+    if (project) {
+        project.contributors++;
+        alert(`Successfully joined ${project.name}! You will be notified when new tasks are available.`);
+        loadProjects(); // Refresh the projects list
+    }
+}
+
+// Function to filter projects by technology
+function filterProjects(technology) {
+    const filteredProjects = technology ? 
+        projects.filter(project => project.tech.includes(technology)) : 
+        projects;
+    
+    const projectsList = document.getElementById('projects-list');
+    projectsList.innerHTML = filteredProjects.map(project => `
+        <div class="project-card">
+            <h3>${project.name}</h3>
+            <p>${project.description}</p>
+            <div class="project-tech">
+                <strong>Technologies:</strong> ${project.tech.join(', ')}
+            </div>
+            <div class="project-stats">
+                <span>Contributors: ${project.contributors}</span>
+                <span>Region: ${project.region}</span>
+                <button onclick="joinProject(${project.id})">Join Project</button>
+            </div>
+        </div>
+    `).join('');
+}
+
 // Navigation event listeners
 document.addEventListener('DOMContentLoaded', function() {
     // Add click events to navigation links
