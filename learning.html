@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Hub - DevSahara</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .learning-path {
+            background: var(--gradient);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .path-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary-color);
+        }
+        .lesson-complete {
+            background: var(--success-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-left: 1rem;
+        }
+        .progress-container {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 8px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: var(--gradient);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .interactive-editor {
+            background: #1e1e1e;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        .code-output {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎓 DevSahara Learning Hub</h1>
+        <p>Master coding with interactive lessons tailored for African & Asian developers</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="ai-assistant.html">AI Assistant</a>
+        <a href="projects.html">Projects</a>
+        <a href="learning.html" class="active">Learning Hub</a>
+        <a href="community.html">Community</a>
+        <a href="auth.html">Join Community</a>
+    </nav>
+
+    <main>
+        <!-- قسم التقدم -->
+        <section class="learning-path fade-in-up">
+            <h2>Your Learning Journey 🌟</h2>
+            <div class="progress-container">
+                <div class="progress-bar" style="width: 35%;"></div>
+            </div>
+            <p>35% Complete - 7 of 20 lessons finished</p>
+        </section>
+
+        <!-- المسارات التعليمية -->
+        <section class="fade-in-up">
+            <h2>Learning Paths 🗺️</h2>
+            <div class="features-grid">
+                <div class="feature-card" onclick="learningSystem.selectPath('frontend')">
+                    <div style="font-size: 3rem;">🎨</div>
+                    <h3>Frontend Master</h3>
+                    <p>HTML, CSS, JavaScript, React, Vue.js</p>
+                    <div class="lesson-complete">12 lessons</div>
+                </div>
+                <div class="feature-card" onclick="learningSystem.selectPath('backend')">
+                    <div style="font-size: 3rem;">⚙️</div>
+                    <h3>Backend Expert</h3>
+                    <p>Node.js, Python, Databases, APIs</p>
+                    <div class="lesson-complete">15 lessons</div>
+                </div>
+                <div class="feature-card" onclick="learningSystem.selectPath('mobile')">
+                    <div style="font-size: 3rem;">📱</div>
+                    <h3>Mobile Developer</h3>
+                    <p>React Native, Flutter, iOS, Android</p>
+                    <div class="lesson-complete">10 lessons</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- الدروس النشطة -->
+        <section class="fade-in-up">
+            <h2>Active Lessons 🔥</h2>
+            <div id="active-lessons">
+                <!-- الدروس النشطة تظهر هنا -->
+            </div>
+        </section>
+
+        <!-- محرر تفاعلي -->
+        <section class="fade-in-up">
+            <h2>Interactive Code Playground 💻</h2>
+            <div class="interactive-editor">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <select id="language-select" onchange="learningSystem.changeLanguage()">
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                    </select>
+                    <button onclick="learningSystem.runCode()" class="btn" style="padding: 0.5rem 1rem;">
+                        <span>▶️ Run Code</span>
+                    </button>
+                </div>
+                <textarea id="code-editor" style="width: 100%; height: 200px; background: #1e1e1e; color: white; border: none; padding: 1rem; font-family: 'Courier New', monospace; border-radius: 5px;" placeholder="Write your code here...">
+// Welcome to DevSahara Code Playground!
+function greetDeveloper(name) {
+    return `Hello ${name}! Welcome to African & Asian developers community!`;
+}
+
+console.log(greetDeveloper("Coder"));
+                </textarea>
+                <div class="code-output" id="code-output">
+                    // Output will appear here
+                </div>
+            </div>
+        </section>
+
+        <!-- التحديات اليومية -->
+        <section class="fade-in-up">
+            <h2>Daily Coding Challenges 🏆</h2>
+            <div id="daily-challenges">
+                <!-- التحديات تظهر هنا -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DevSahara - African & Asian Developers Community</p>
+    </footer>
+
+    <script src="learning.js"></script>
+</body>
+</html>
