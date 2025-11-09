@@ -8,55 +8,56 @@
 </head>
 <body>
     <!-- شريط التنقل المحسن -->
-    <nav>
-        <div class="nav-container">
+    <nav class="navbar">
+        <div class="navbar-container">
             <!-- الشعار -->
-            <a href="index.html" class="nav-logo">
-                <span class="nav-logo-icon">🚀</span>
+            <a href="index.html" class="navbar-logo">
+                <span class="logo-icon">🚀</span>
                 <span>DevSahara</span>
             </a>
 
             <!-- زر القائمة المتنقلة -->
-            <button class="nav-toggle">☰</button>
+            <button class="mobile-menu-btn">☰</button>
 
             <!-- البحث -->
-            <div class="nav-search">
-                <input type="text" placeholder="Search repositories, users, projects...">
+            <div class="navbar-search">
+                <input type="text" class="search-input" placeholder="Search repositories, users, projects...">
+                <span class="search-icon">🔍</span>
             </div>
 
             <!-- روابط التنقل -->
-            <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="ai-assistant.html">AI Assistant</a>
-                <a href="projects.html">Projects</a>
-                <a href="community.html">Community</a>
-                <a href="learning.html">Learning Hub</a>
-                <a href="contribute.html">Contribute</a>
-                <a href="about.html">About</a>
+            <div class="navbar-links">
+                <a href="index.html" class="navbar-link active">🏠 Home</a>
+                <a href="ai-assistant.html" class="navbar-link">🤖 AI Assistant</a>
+                <a href="projects.html" class="navbar-link">💼 Projects</a>
+                <a href="community.html" class="navbar-link">👥 Community</a>
+                <a href="learning.html" class="navbar-link">🎓 Learning Hub</a>
+                <a href="contribute.html" class="navbar-link">🤝 Contribute</a>
+                <a href="about.html" class="navbar-link">ℹ️ About</a>
             </div>
 
             <!-- قسم المستخدم -->
-            <div class="nav-user">
-                <div class="notification-icon" style="position: relative;">
+            <div class="navbar-user">
+                <div class="notification-bell">
                     🔔
                     <span class="notification-dot"></span>
                 </div>
                 <div class="user-dropdown">
                     <div class="user-avatar">DS</div>
-                    <div class="user-menu">
-                        <a href="profile.html" class="user-menu-item">Your profile</a>
-                        <a href="repositories.html" class="user-menu-item">Your repositories</a>
-                        <a href="projects.html" class="user-menu-item">Your projects</a>
-                        <div class="user-menu-divider"></div>
-                        <a href="settings.html" class="user-menu-item">Settings</a>
-                        <a href="auth.html" class="user-menu-item">Sign in</a>
+                    <div class="dropdown-menu">
+                        <a href="profile.html" class="dropdown-item">👤 Your profile</a>
+                        <a href="repositories.html" class="dropdown-item">📁 Your repositories</a>
+                        <a href="projects.html" class="dropdown-item">💼 Your projects</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+                        <a href="auth.html" class="dropdown-item">🔐 Sign in</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <main>
+    <main class="main-content">
         <div class="github-layout">
             <!-- الشريط الجانبي -->
             <aside class="sidebar">
@@ -65,22 +66,26 @@
                     <ul class="sidebar-list">
                         <li class="sidebar-item">
                             <a href="index.html" class="sidebar-link active">
-                                <span>🏠</span> Home
+                                <span class="sidebar-icon">🏠</span> 
+                                <span class="sidebar-text">Home</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="dashboard.html" class="sidebar-link">
-                                <span>📊</span> Dashboard
+                                <span class="sidebar-icon">📊</span>
+                                <span class="sidebar-text">Dashboard</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="projects.html" class="sidebar-link">
-                                <span>💼</span> Projects
+                                <span class="sidebar-icon">💼</span>
+                                <span class="sidebar-text">Projects</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="repositories.html" class="sidebar-link">
-                                <span>📁</span> Repositories
+                                <span class="sidebar-icon">📁</span>
+                                <span class="sidebar-text">Repositories</span>
                             </a>
                         </li>
                     </ul>
@@ -91,22 +96,26 @@
                     <ul class="sidebar-list">
                         <li class="sidebar-item">
                             <a href="learning.html" class="sidebar-link">
-                                <span>🎓</span> Learning Hub
+                                <span class="sidebar-icon">🎓</span>
+                                <span class="sidebar-text">Learning Hub</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="community.html" class="sidebar-link">
-                                <span>👥</span> Community
+                                <span class="sidebar-icon">👥</span>
+                                <span class="sidebar-text">Community</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="ai-assistant.html" class="sidebar-link">
-                                <span>🤖</span> AI Assistant
+                                <span class="sidebar-icon">🤖</span>
+                                <span class="sidebar-text">AI Assistant</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="challenges.html" class="sidebar-link">
-                                <span>🏆</span> Challenges
+                                <span class="sidebar-icon">🏆</span>
+                                <span class="sidebar-text">Challenges</span>
                             </a>
                         </li>
                     </ul>
@@ -117,22 +126,26 @@
                     <ul class="sidebar-list">
                         <li class="sidebar-item">
                             <a href="docs.html" class="sidebar-link">
-                                <span>📚</span> Documentation
+                                <span class="sidebar-icon">📚</span>
+                                <span class="sidebar-text">Documentation</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="tutorials.html" class="sidebar-link">
-                                <span>🎥</span> Tutorials
+                                <span class="sidebar-icon">🎥</span>
+                                <span class="sidebar-text">Tutorials</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="contribute.html" class="sidebar-link">
-                                <span>🤝</span> Contribute
+                                <span class="sidebar-icon">🤝</span>
+                                <span class="sidebar-text">Contribute</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="support.html" class="sidebar-link">
-                                <span>💬</span> Support
+                                <span class="sidebar-icon">💬</span>
+                                <span class="sidebar-text">Support</span>
                             </a>
                         </li>
                     </ul>
@@ -140,298 +153,300 @@
             </aside>
 
             <!-- المحتوى الرئيسي -->
-            <div class="main-content">
+            <div class="main-content-area">
                 <!-- قسم البطل -->
-                <section class="hero-section fade-in-up">
-                    <h1>🌍 Build the Future with African & Asian Developers</h1>
-                    <p>Join thousands of developers building innovative solutions for our communities</p>
-                    <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <button onclick="showProjects()" class="btn">
-                            <span>🚀 Explore Projects</span>
-                        </button>
-                        <button onclick="showAbout()" class="btn btn-secondary">
-                            <span>📖 Learn More</span>
-                        </button>
-                        <a href="auth.html" class="btn" style="background: #2ea44f; color: white;">
-                            <span>👥 Join Community</span>
-                        </a>
+                <section class="hero-section">
+                    <div class="hero-container">
+                        <h1 class="hero-title">🌍 Build the Future with African & Asian Developers</h1>
+                        <p class="hero-description">Join thousands of developers building innovative solutions for our communities</p>
+                        <div class="hero-actions">
+                            <button onclick="showProjects()" class="btn btn-primary">
+                                <span class="btn-icon">🚀</span>
+                                <span class="btn-text">Explore Projects</span>
+                            </button>
+                            <button onclick="showAbout()" class="btn btn-secondary">
+                                <span class="btn-icon">📖</span>
+                                <span class="btn-text">Learn More</span>
+                            </button>
+                            <a href="auth.html" class="btn btn-accent">
+                                <span class="btn-icon">👥</span>
+                                <span class="btn-text">Join Community</span>
+                            </a>
+                        </div>
                     </div>
                 </section>
 
                 <!-- الإحصائيات -->
-                <section class="fade-in-up">
-                    <h2 style="text-align: center; margin-bottom: 2rem;">Our Growing Community</h2>
-                    <div class="stats-container">
-                        <div class="stat-card">
+                <section class="stats-section">
+                    <h2 class="section-title">Our Growing Community</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
                             <div class="stat-number">1,250+</div>
-                            <p>Active Developers</p>
+                            <p class="stat-label">Active Developers</p>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-item">
                             <div class="stat-number">89</div>
-                            <p>Projects Launched</p>
+                            <p class="stat-label">Projects Launched</p>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-item">
                             <div class="stat-number">15</div>
-                            <p>Countries Represented</p>
+                            <p class="stat-label">Countries Represented</p>
                         </div>
-                        <div class="stat-card">
+                        <div class="stat-item">
                             <div class="stat-number">24/7</div>
-                            <p>AI Support Available</p>
+                            <p class="stat-label">AI Support Available</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- علامات التبويب الرئيسية -->
-                <div class="tab-nav">
-                    <button class="tab-button active" data-tab="features">Features</button>
-                    <button class="tab-button" data-tab="projects">Projects</button>
-                    <button class="tab-button" data-tab="about">About</button>
-                    <button class="tab-button" data-tab="contribute">Contribute</button>
-                </div>
+                <div class="tabs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="features">Features</button>
+                        <button class="tab-btn" data-tab="projects">Projects</button>
+                        <button class="tab-btn" data-tab="about">About</button>
+                        <button class="tab-btn" data-tab="contribute">Contribute</button>
+                    </div>
 
-                <!-- محتوى علامات التبويب -->
-                <div id="features" class="tab-content">
-                    <!-- الميزات المعززة -->
-                    <section id="ai-features" class="fade-in-up">
-                        <h2>🤖 AI-Powered Development Suite</h2>
-                        <p style="text-align: center; margin-bottom: 2rem; font-size: 1.2rem;">Supercharge your development journey with our intelligent tools</p>
-                        
-                        <div class="features-grid">
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">💻</div>
-                                <h3>Smart Code Assistant</h3>
-                                <p>Get real-time code suggestions, debugging help, and best practices tailored for African & Asian markets</p>
-                                <a href="ai-assistant.html">Start Coding →</a>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
-                                <h3>Project Generator</h3>
-                                <p>Generate innovative project ideas that solve real problems in our communities</p>
-                                <a href="ai-assistant.html">Get Ideas →</a>
-                            </div>
-                            
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">📚</div>
-                                <h3>Learning Path</h3>
-                                <p>Personalized learning journey based on your goals and regional opportunities</p>
-                                <a href="ai-assistant.html">Start Learning →</a>
-                            </div>
+                    <div class="tabs-content">
+                        <!-- محتوى علامات التبويب -->
+                        <div id="features-tab" class="tab-panel active">
+                            <section class="features-section">
+                                <h2>🤖 AI-Powered Development Suite</h2>
+                                <p class="section-subtitle">Supercharge your development journey with our intelligent tools</p>
+                                
+                                <div class="features-grid">
+                                    <div class="feature-card">
+                                        <div class="feature-icon">💻</div>
+                                        <h3 class="feature-title">Smart Code Assistant</h3>
+                                        <p class="feature-description">Get real-time code suggestions, debugging help, and best practices tailored for African & Asian markets</p>
+                                        <a href="ai-assistant.html" class="feature-link">Start Coding →</a>
+                                    </div>
+                                    
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🚀</div>
+                                        <h3 class="feature-title">Project Generator</h3>
+                                        <p class="feature-description">Generate innovative project ideas that solve real problems in our communities</p>
+                                        <a href="ai-assistant.html" class="feature-link">Get Ideas →</a>
+                                    </div>
+                                    
+                                    <div class="feature-card">
+                                        <div class="feature-icon">📚</div>
+                                        <h3 class="feature-title">Learning Path</h3>
+                                        <p class="feature-description">Personalized learning journey based on your goals and regional opportunities</p>
+                                        <a href="ai-assistant.html" class="feature-link">Start Learning →</a>
+                                    </div>
 
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">👥</div>
-                                <h3>Community Collaboration</h3>
-                                <p>Connect with developers across Africa and Asia for joint projects and knowledge sharing</p>
-                                <a href="community.html">Join Community →</a>
-                            </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">👥</div>
+                                        <h3 class="feature-title">Community Collaboration</h3>
+                                        <p class="feature-description">Connect with developers across Africa and Asia for joint projects and knowledge sharing</p>
+                                        <a href="community.html" class="feature-link">Join Community →</a>
+                                    </div>
 
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
-                                <h3>Localized Solutions</h3>
-                                <p>Tools and resources specifically designed for regional challenges and opportunities</p>
-                                <a href="projects.html">Explore Solutions →</a>
-                            </div>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">🌐</div>
+                                        <h3 class="feature-title">Localized Solutions</h3>
+                                        <p class="feature-description">Tools and resources specifically designed for regional challenges and opportunities</p>
+                                        <a href="projects.html" class="feature-link">Explore Solutions →</a>
+                                    </div>
 
-                            <div class="feature-card">
-                                <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
-                                <h3>Progress Tracking</h3>
-                                <p>Monitor your learning journey and project contributions with detailed analytics</p>
-                                <a href="dashboard.html">View Dashboard →</a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <div id="projects" class="tab-content" style="display: none;">
-                    <!-- المشاريع النشطة -->
-                    <section class="fade-in-up">
-                        <h2>🚀 Featured Projects</h2>
-                        <p style="text-align: center; margin-bottom: 2rem;">Explore innovative projects built by our community</p>
-                        
-                        <div class="projects-grid">
-                            <div class="repo-card">
-                                <div class="repo-header">
-                                    <a href="#" class="repo-title">web-development-bootcamp</a>
-                                    <div class="repo-stats">
-                                        <span>⭐ 142</span>
-                                        <span>🔄 23</span>
+                                    <div class="feature-card">
+                                        <div class="feature-icon">📊</div>
+                                        <h3 class="feature-title">Progress Tracking</h3>
+                                        <p class="feature-description">Monitor your learning journey and project contributions with detailed analytics</p>
+                                        <a href="dashboard.html" class="feature-link">View Dashboard →</a>
                                     </div>
                                 </div>
-                                <p class="repo-description">
-                                    Complete web development curriculum for African and Asian developers. 
-                                    Learn HTML, CSS, JavaScript, React, Node.js and more.
-                                </p>
-                                <div class="repo-topics">
-                                    <a href="#" class="topic-tag">html</a>
-                                    <a href="#" class="topic-tag">css</a>
-                                    <a href="#" class="topic-tag">javascript</a>
-                                    <a href="#" class="topic-tag">react</a>
-                                </div>
-                                <div class="repo-footer">
-                                    <span>Updated 2 days ago</span>
-                                    <button class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                        Contribute
-                                    </button>
-                                </div>
-                            </div>
+                            </section>
+                        </div>
 
-                            <div class="repo-card">
-                                <div class="repo-header">
-                                    <a href="#" class="repo-title">african-ecommerce-api</a>
-                                    <div class="repo-stats">
-                                        <span>⭐ 89</span>
-                                        <span>🔄 15</span>
+                        <div id="projects-tab" class="tab-panel">
+                            <section class="projects-section">
+                                <h2>🚀 Featured Projects</h2>
+                                <p class="section-subtitle">Explore innovative projects built by our community</p>
+                                
+                                <div class="projects-grid">
+                                    <div class="project-card">
+                                        <div class="project-header">
+                                            <a href="#" class="project-title">web-development-bootcamp</a>
+                                            <div class="project-stats">
+                                                <span class="stat">⭐ 142</span>
+                                                <span class="stat">🔄 23</span>
+                                            </div>
+                                        </div>
+                                        <p class="project-description">
+                                            Complete web development curriculum for African and Asian developers. 
+                                            Learn HTML, CSS, JavaScript, React, Node.js and more.
+                                        </p>
+                                        <div class="project-topics">
+                                            <span class="topic-tag">html</span>
+                                            <span class="topic-tag">css</span>
+                                            <span class="topic-tag">javascript</span>
+                                            <span class="topic-tag">react</span>
+                                        </div>
+                                        <div class="project-footer">
+                                            <span class="update-time">Updated 2 days ago</span>
+                                            <button class="btn btn-small">Contribute</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="project-card">
+                                        <div class="project-header">
+                                            <a href="#" class="project-title">african-ecommerce-api</a>
+                                            <div class="project-stats">
+                                                <span class="stat">⭐ 89</span>
+                                                <span class="stat">🔄 15</span>
+                                            </div>
+                                        </div>
+                                        <p class="project-description">
+                                            E-commerce API designed specifically for African markets with 
+                                            multi-currency support and mobile money integration.
+                                        </p>
+                                        <div class="project-topics">
+                                            <span class="topic-tag">nodejs</span>
+                                            <span class="topic-tag">api</span>
+                                            <span class="topic-tag">ecommerce</span>
+                                            <span class="topic-tag">africa</span>
+                                        </div>
+                                        <div class="project-footer">
+                                            <span class="update-time">Updated 1 week ago</span>
+                                            <button class="btn btn-small">Contribute</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="project-card">
+                                        <div class="project-header">
+                                            <a href="#" class="project-title">agriculture-tech-ml</a>
+                                            <div class="project-stats">
+                                                <span class="stat">⭐ 67</span>
+                                                <span class="stat">🔄 12</span>
+                                            </div>
+                                        </div>
+                                        <p class="project-description">
+                                            Machine learning solutions for agricultural challenges in developing regions.
+                                            Crop prediction, weather analysis, and market insights.
+                                        </p>
+                                        <div class="project-topics">
+                                            <span class="topic-tag">python</span>
+                                            <span class="topic-tag">ml</span>
+                                            <span class="topic-tag">agriculture</span>
+                                            <span class="topic-tag">ai</span>
+                                        </div>
+                                        <div class="project-footer">
+                                            <span class="update-time">Updated 3 days ago</span>
+                                            <button class="btn btn-small">Contribute</button>
+                                        </div>
                                     </div>
                                 </div>
-                                <p class="repo-description">
-                                    E-commerce API designed specifically for African markets with 
-                                    multi-currency support and mobile money integration.
-                                </p>
-                                <div class="repo-topics">
-                                    <a href="#" class="topic-tag">nodejs</a>
-                                    <a href="#" class="topic-tag">api</a>
-                                    <a href="#" class="topic-tag">ecommerce</a>
-                                    <a href="#" class="topic-tag">africa</a>
-                                </div>
-                                <div class="repo-footer">
-                                    <span>Updated 1 week ago</span>
-                                    <button class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                        Contribute
-                                    </button>
-                                </div>
-                            </div>
+                            </section>
+                        </div>
 
-                            <div class="repo-card">
-                                <div class="repo-header">
-                                    <a href="#" class="repo-title">agriculture-tech-ml</a>
-                                    <div class="repo-stats">
-                                        <span>⭐ 67</span>
-                                        <span>🔄 12</span>
+                        <div id="about-tab" class="tab-panel">
+                            <section class="about-section">
+                                <h2>About Our Platform</h2>
+                                <p class="section-intro">This platform is dedicated to software developers from:</p>
+                                <div class="regions-grid">
+                                    <div class="region-card">
+                                        <h3 class="region-title">🌍 Africa</h3>
+                                        <ul class="region-list">
+                                            <li class="region-item">North Africa (Morocco, Algeria, Tunisia, Egypt, Libya...)</li>
+                                            <li class="region-item">West Africa (Nigeria, Ghana, Ivory Coast, Senegal...)</li>
+                                            <li class="region-item">East Africa (Kenya, Ethiopia, Tanzania, Uganda...)</li>
+                                            <li class="region-item">Central Africa (Congo, Cameroon, Angola...)</li>
+                                            <li class="region-item">Southern Africa (South Africa, Zimbabwe, Zambia...)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="region-card">
+                                        <h3 class="region-title">🌏 Asia</h3>
+                                        <ul class="region-list">
+                                            <li class="region-item">South Asia (India, Pakistan, Bangladesh, Sri Lanka...)</li>
+                                            <li class="region-item">East Asia (China, Japan, Korea, Taiwan...)</li>
+                                            <li class="region-item">Southeast Asia (Indonesia, Vietnam, Thailand, Malaysia...)</li>
+                                            <li class="region-item">West Asia (Saudi Arabia, UAE, Qatar, Oman...)</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <p class="repo-description">
-                                    Machine learning solutions for agricultural challenges in developing regions.
-                                    Crop prediction, weather analysis, and market insights.
-                                </p>
-                                <div class="repo-topics">
-                                    <a href="#" class="topic-tag">python</a>
-                                    <a href="#" class="topic-tag">ml</a>
-                                    <a href="#" class="topic-tag">agriculture</a>
-                                    <a href="#" class="topic-tag">ai</a>
-                                </div>
-                                <div class="repo-footer">
-                                    <span>Updated 3 days ago</span>
-                                    <button class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem;">
-                                        Contribute
-                                    </button>
-                                </div>
-                            </div>
+                            </section>
                         </div>
-                    </section>
-                </div>
 
-                <div id="about" class="tab-content" style="display: none;">
-                    <!-- حول المنصة -->
-                    <section class="fade-in-up">
-                        <h2>About Our Platform</h2>
-                        <p>This platform is dedicated to software developers from:</p>
-                        <div class="regions-grid">
-                            <div class="region-card">
-                                <h3>🌍 Africa</h3>
-                                <ul class="region-list">
-                                    <li>North Africa (Morocco, Algeria, Tunisia, Egypt, Libya...)</li>
-                                    <li>West Africa (Nigeria, Ghana, Ivory Coast, Senegal...)</li>
-                                    <li>East Africa (Kenya, Ethiopia, Tanzania, Uganda...)</li>
-                                    <li>Central Africa (Congo, Cameroon, Angola...)</li>
-                                    <li>Southern Africa (South Africa, Zimbabwe, Zambia...)</li>
-                                </ul>
-                            </div>
-                            <div class="region-card">
-                                <h3>🌏 Asia</h3>
-                                <ul class="region-list">
-                                    <li>South Asia (India, Pakistan, Bangladesh, Sri Lanka...)</li>
-                                    <li>East Asia (China, Japan, Korea, Taiwan...)</li>
-                                    <li>Southeast Asia (Indonesia, Vietnam, Thailand, Malaysia...)</li>
-                                    <li>West Asia (Saudi Arabia, UAE, Qatar, Oman...)</li>
-                                </ul>
-                            </div>
+                        <div id="contribute-tab" class="tab-panel">
+                            <section class="contribute-section">
+                                <h2>How to Contribute</h2>
+                                <div class="steps-grid">
+                                    <div class="step-card">
+                                        <div class="step-number">1</div>
+                                        <h3 class="step-title">Fork the Project</h3>
+                                        <p class="step-description">Create your own copy of the repository to start working on improvements</p>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-number">2</div>
+                                        <h3 class="step-title">Create Branch</h3>
+                                        <p class="step-description">Work on your feature or bug fix in a dedicated branch</p>
+                                    </div>
+                                    <div class="step-card">
+                                        <div class="step-number">3</div>
+                                        <h3 class="step-title">Submit Pull Request</h3>
+                                        <p class="step-description">Share your improvements with the community through a pull request</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="cta-section">
+                                    <h3 class="cta-title">Ready to Start?</h3>
+                                    <div class="cta-actions">
+                                        <a href="contribute.html" class="btn btn-primary">
+                                            <span class="btn-icon">📖</span>
+                                            <span class="btn-text">Contribution Guide</span>
+                                        </a>
+                                        <a href="projects.html" class="btn btn-secondary">
+                                            <span class="btn-icon">🚀</span>
+                                            <span class="btn-text">Find Projects</span>
+                                        </a>
+                                        <a href="community.html" class="btn btn-accent">
+                                            <span class="btn-icon">👥</span>
+                                            <span class="btn-text">Join Discussion</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-                    </section>
-                </div>
-
-                <div id="contribute" class="tab-content" style="display: none;">
-                    <!-- كيفية المساهمة -->
-                    <section class="fade-in-up">
-                        <h2>How to Contribute</h2>
-                        <div class="contribution-steps">
-                            <div class="step-card">
-                                <div class="step-number">1</div>
-                                <h3>Fork the Project</h3>
-                                <p>Create your own copy of the repository to start working on improvements</p>
-                            </div>
-                            <div class="step-card">
-                                <div class="step-number">2</div>
-                                <h3>Create Branch</h3>
-                                <p>Work on your feature or bug fix in a dedicated branch</p>
-                            </div>
-                            <div class="step-card">
-                                <div class="step-number">3</div>
-                                <h3>Submit Pull Request</h3>
-                                <p>Share your improvements with the community through a pull request</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contribute-actions">
-                            <h3>Ready to Start?</h3>
-                            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                                <a href="contribute.html" class="btn">
-                                    <span>📖 Contribution Guide</span>
-                                </a>
-                                <a href="projects.html" class="btn btn-secondary">
-                                    <span>🚀 Find Projects</span>
-                                </a>
-                                <a href="community.html" class="btn" style="background: #6f42c1; color: white;">
-                                    <span>👥 Join Discussion</span>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer>
-        <div class="footer-content">
+    <footer class="footer">
+        <div class="footer-container">
             <div class="footer-section">
-                <h4>DevSahara</h4>
-                <p>Empowering African and Asian developers to build the future together.</p>
+                <h4 class="footer-title">DevSahara</h4>
+                <p class="footer-description">Empowering African and Asian developers to build the future together.</p>
             </div>
             <div class="footer-section">
-                <h4>Resources</h4>
-                <a href="docs.html">Documentation</a>
-                <a href="tutorials.html">Tutorials</a>
-                <a href="learning.html">Learning Hub</a>
+                <h4 class="footer-title">Resources</h4>
+                <a href="docs.html" class="footer-link">Documentation</a>
+                <a href="tutorials.html" class="footer-link">Tutorials</a>
+                <a href="learning.html" class="footer-link">Learning Hub</a>
             </div>
             <div class="footer-section">
-                <h4>Community</h4>
-                <a href="community.html">Discussions</a>
-                <a href="projects.html">Projects</a>
-                <a href="contribute.html">Contribute</a>
+                <h4 class="footer-title">Community</h4>
+                <a href="community.html" class="footer-link">Discussions</a>
+                <a href="projects.html" class="footer-link">Projects</a>
+                <a href="contribute.html" class="footer-link">Contribute</a>
             </div>
             <div class="footer-section">
-                <h4>Support</h4>
-                <a href="help.html">Help</a>
-                <a href="contact.html">Contact</a>
-                <a href="status.html">Status</a>
+                <h4 class="footer-title">Support</h4>
+                <a href="help.html" class="footer-link">Help</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="status.html" class="footer-link">Status</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 DevSahara - African & Asian Developers Community</p>
+            <p class="footer-copyright">&copy; 2024 DevSahara - African & Asian Developers Community</p>
         </div>
     </footer>
 
     <script src="navigation.js"></script>
     <script src="app.js"></script>
 </body>
-    </html>               
+                            </html>
