@@ -12,6 +12,8 @@
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-light: linear-gradient(135deg, #667eea20 0%, #764ba220 100%);
+  --primary-light: #f0f4ff;
+  --success-light: #f0fff4;
 }
 
 /* === إعادة الضبط الأساسية === */
@@ -42,6 +44,7 @@ header {
   text-align: center;
   position: relative;
   overflow: hidden;
+  margin-top: 60px; /* تعويض للتنقل الثابت */
 }
 
 header::before {
@@ -71,60 +74,444 @@ header p {
   margin: 0 auto;
 }
 
-/* === شريط التنقل === */
+/* === شريط التنقل الثابت والمحسن === */
 nav {
-  background: rgba(255, 255, 255, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
-  padding: 1rem 2rem;
-  position: sticky;
-  top: 0;
+  border-bottom: 1px solid #e1e4e8;
   z-index: 1000;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  height: 60px;
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
-nav a {
-  color: var(--dark-color);
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.7rem 1.5rem;
-  border-radius: 50px;
+  align-items: center;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
 
-nav a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
+nav.scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  height: 50px;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   width: 100%;
   height: 100%;
-  background: var(--gradient);
-  transition: left 0.3s ease;
-  z-index: -1;
 }
 
-nav a:hover::before {
+/* شعار GitHub-like */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nav-logo:hover {
+  background: #f6f8fa;
+}
+
+.nav-logo-icon {
+  font-size: 1.5rem;
+}
+
+/* روابط التنقل */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #24292e;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-links a:hover {
+  background: #f6f8fa;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.nav-links a.active {
+  color: var(--primary-color);
+  background: #f0f4ff;
+  font-weight: 600;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
   left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-color);
 }
 
-nav a:hover {
+/* زر البحث GitHub-like */
+.nav-search {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 2rem;
+  position: relative;
+}
+
+.nav-search input {
+  width: 100%;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  background: #f6f8fa;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.nav-search input:focus {
+  background: white;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  outline: none;
+}
+
+.nav-search::before {
+  content: '🔍';
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  color: #6a737d;
+  z-index: 1;
+}
+
+/* قسم المستخدم */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.user-avatar:hover {
+  transform: scale(1.05);
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  min-width: 180px;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  z-index: 1001;
+}
+
+.user-menu.show {
+  display: block;
+}
+
+.user-menu-item {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #24292e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.user-menu-item:hover {
+  background: #f6f8fa;
+  color: var(--primary-color);
+}
+
+.user-menu-divider {
+  height: 1px;
+  background: #e1e4e8;
+  margin: 0.5rem 0;
+}
+
+/* زر القائمة المتنقلة */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: #24292e;
+}
+
+/* هامش للمحتوى الرئيسي */
+main {
+  margin-top: 80px;
+  min-height: calc(100vh - 160px);
+}
+
+nav.scrolled + main {
+  margin-top: 70px;
+}
+
+/* إشعارات GitHub-like */
+.notification-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background: #0969da;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.notification-icon {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.notification-icon:hover {
+  background: #f6f8fa;
+}
+
+/* === تخطيط GitHub-like === */
+.github-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* الشريط الجانبي */
+.sidebar {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.sidebar-section {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  border-bottom: 1px solid #e1e4e8;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #24292e;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  border-bottom: 1px solid #f6f8fa;
+}
+
+.sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #24292e;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: #f6f8fa;
+  text-decoration: none;
+  color: #24292e;
+}
+
+.sidebar-link.active {
+  background: #f0f4ff;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+/* المحتوى الرئيسي */
+.main-content {
+  min-height: 800px;
+}
+
+/* بطاقات GitHub-like */
+.repo-card, .profile-card {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.repo-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.repo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.repo-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0969da;
+  text-decoration: none;
+}
+
+.repo-title:hover {
+  text-decoration: underline;
+}
+
+.repo-stats {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #6a737d;
+}
+
+.repo-description {
+  color: #57606a;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.repo-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.topic-tag {
+  background: #ddf4ff;
+  color: #0969da;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.topic-tag:hover {
+  background: #b6e3ff;
+  text-decoration: none;
+  color: #0969da;
+}
+
+/* علامات التبويب GitHub-like */
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid #e1e4e8;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: #6a737d;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.tab-button.active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+  font-weight: 500;
+}
+
+.tab-button:hover {
+  color: #24292e;
+}
+
+.tab-content {
+  display: block;
 }
 
 /* === المحتوى الرئيسي === */
-main {
-  max-width: 1200px;
-  margin: 3rem auto;
-  padding: 0 2rem;
-}
-
 section {
   background: white;
   padding: 3rem;
@@ -214,6 +601,8 @@ section::before {
 .feature-card a:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  text-decoration: none;
+  color: white;
 }
 
 /* === بطاقات المشاريع === */
@@ -290,6 +679,12 @@ button, .btn {
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
   position: relative;
   overflow: hidden;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 button::before, .btn::before {
@@ -310,6 +705,8 @@ button:hover::before, .btn:hover::before {
 button:hover, .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  text-decoration: none;
+  color: white;
 }
 
 button span, .btn span {
@@ -388,23 +785,76 @@ footer p {
 }
 
 /* === التجاوب === */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-  
-  nav {
-    flex-direction: column;
-    gap: 0.5rem;
+@media (max-width: 1024px) {
+  .github-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
     padding: 1rem;
   }
   
-  nav a {
-    text-align: center;
+  .sidebar {
+    position: static;
+  }
+  
+  .nav-search {
+    max-width: 200px;
+    margin: 0 1rem;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+  
+  .nav-search {
+    display: none;
+  }
+  
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    gap: 0;
+  }
+  
+  .nav-links.show {
+    display: flex;
+  }
+  
+  .nav-links a {
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    margin: 0.2rem 0;
+  }
+  
+  .nav-links a.active::after {
+    display: none;
+  }
+  
+  .nav-toggle {
+    display: block;
   }
   
   main {
-    padding: 0 1rem;
+    margin-top: 70px;
+  }
+  
+  .github-layout {
+    padding: 1rem;
   }
   
   section {
@@ -427,6 +877,15 @@ footer p {
   
   .project-actions {
     flex-direction: column;
+  }
+  
+  header {
+    margin-top: 60px;
+    padding: 2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
   }
 }
 
@@ -497,1149 +956,234 @@ footer p {
   margin-bottom: 0.5rem;
 }
 
-/* === تحسينات الشات === */
-.chat-container {
-  background: white;
-  border-radius: 20px;
-  padding: 2rem;
-  margin-top: 2rem;
-  box-shadow: var(--shadow);
-}
-
-.chat-messages {
-  height: 400px;
-  overflow-y: auto;
-  border: 1px solid #e2e8f0;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-radius: 15px;
-  background: #f8fafc;
-}
-
-.message {
-  margin: 1rem 0;
-  padding: 1rem 1.5rem;
-  border-radius: 20px;
-  max-width: 80%;
-  animation: fadeInUp 0.3s ease-out;
-}
-
-.user-message {
-  background: var(--gradient);
-  color: white;
-  margin-left: auto;
-  border-bottom-right-radius: 5px;
-}
-
-.ai-message {
-  background: white;
-  color: var(--text-color);
-  border: 1px solid #e2e8f0;
-  margin-right: auto;
-  border-bottom-left-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.chat-input {
-  display: flex;
-  gap: 1rem;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 1rem 1.5rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 50px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.chat-input input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
-
-.chat-input button {
-  padding: 1rem 2rem;
-  white-space: nowrap;
-    }
-/* إضافات للنظام المتقدم */
-.project-categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.progress-bar {
-    background: #e9ecef;
-    border-radius: 10px;
-    height: 8px;
-    margin: 0.5rem 0;
-    overflow: hidden;
-}
-
-.progress-fill {
-    background: var(--gradient);
-    height: 100%;
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
-.role-tag {
-    display: inline-block;
-    background: var(--warning-color);
-    color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    margin: 0.2rem;
-    font-weight: 600;
-}
-/* أنماط الذكاء الاصطناعي المتقدم */
-.ai-presence-indicator {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: white;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.ai-dot {
-    width: 8px;
-    height: 8px;
-    background: #00ff00;
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-/* أنماط المجتمع */
-.discussion-card, .study-group-card {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    margin: 1rem 0;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
-}
-
-.discussion-card:hover, .study-group-card:hover {
-    transform: translateY(-2px);
-}
-
-.discussion-stats {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
-}
-
-.discussion-tags {
-    margin: 1rem 0;
-}
-
-.tag {
-    background: var(--primary-light);
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
-}
-
-.live-activity {
-    background: var(--success-light);
-    padding: 0.5rem 1rem;
-    border-radius: 10px;
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    animation: slideInLeft 0.5s ease;
-}
-
-@keyframes slideInLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-/* أنماط نظام المكافآت */
-.points-notification, .achievement-notification, .level-up-notification {
-    animation: slideInRight 0.5s ease;
-}
-
-@keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-.points-popup, .achievement-popup, .level-up-popup {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.level-badge {
-    font-size: 2rem;
-}
-
-.achievement-icon {
-    font-size: 2.5rem;
-}
-
-/* أنماط التقويم */
-.streak-days {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-top: 1rem;
-}
-
-.streak-day {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f0f0f0;
-    font-size: 0.8rem;
-}
-
-.streak-day.active {
-    background: var(--success-color);
-    color: white;
-}
-
-/* أنماط الوضع الداكن */
-.dark-mode {
-    --bg-color: #1a1a1a;
-    --text-color: white;
-    --card-bg: #2d2d2d;
-    --border-color: #404040;
-}
-
-.dark-mode .stat-card,
-.dark-mode .feature-card,
-.dark-mode .discussion-card,
-.dark-mode .study-group-card {
-    background: var(--card-bg);
-    color: white;
-}
-
-.dark-mode .ai-presence-indicator {
-    background: var(--card-bg);
-    color: white;
-}
-
-/* أنماط متجاوبة */
-@media (max-width: 768px) {
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .quick-actions {
-        grid-template-columns: 1fr;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .ai-presence-indicator {
-        bottom: 10px;
-        right: 10px;
-        left: 10px;
-    }
-}
-
-/* تحسينات الوصول */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* دعم متعدد اللغات */
-[dir="rtl"] {
-    text-align: right;
-}
-
-[dir="rtl"] .ai-presence-indicator {
-    right: auto;
-    left: 20px;
-}
-/* ===== شريط تنقل ثابت ومتحسن ===== */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #e1e4e8;
-    z-index: 1000;
-    padding: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-nav.scrolled {
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    height: 50px;
-}
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    width: 100%;
-}
-
-/* شعار GitHub-like */
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-.nav-logo-icon {
-    font-size: 1.5rem;
-}
-
-/* روابط التنقل */
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #24292e;
-    font-weight: 500;
-    font-size: 0.9rem;
-    padding: 0.5rem 0.8rem;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-    position: relative;
-}
-
-.nav-links a:hover {
-    background: #f6f8fa;
-    color: var(--primary-color);
-}
-
-.nav-links a.active {
-    color: var(--primary-color);
-    background: #f0f4ff;
-}
-
-.nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: -16px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: var(--primary-color);
-}
-
-/* زر البحث GitHub-like */
-.nav-search {
-    flex: 1;
-    max-width: 300px;
-    margin: 0 2rem;
-    position: relative;
-}
-
-.nav-search input {
-    width: 100%;
-    padding: 0.5rem 1rem 0.5rem 2.5rem;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    background: #f6f8fa;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-}
-
-.nav-search input:focus {
-    background: white;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    outline: none;
-}
-
-.nav-search::before {
-    content: '🔍';
-    position: absolute;
-    left: 0.8rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.9rem;
-    color: #6a737d;
-}
-
-/* قسم المستخدم */
-.nav-user {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.user-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
-}
-
-.user-dropdown {
-    position: relative;
-}
-
-.user-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    min-width: 180px;
-    padding: 0.5rem 0;
-    margin-top: 0.5rem;
-}
-
-.user-menu.show {
-    display: block;
-}
-
-.user-menu-item {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #24292e;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: background 0.2s ease;
-}
-
-.user-menu-item:hover {
-    background: #f6f8fa;
-    color: var(--primary-color);
-}
-
-/* زر القائمة المتنقلة */
-.nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-/* هامش للمحتوى الرئيسي */
-main {
-    margin-top: 80px;
-    min-height: calc(100vh - 80px);
-}
-
-nav.scrolled + main {
-    margin-top: 70px;
-}
-
-/* ===== تخطيط GitHub-like ===== */
-.github-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* الشريط الجانبي */
-.sidebar {
-    position: sticky;
-    top: 100px;
-    height: fit-content;
-}
-
-.sidebar-section {
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    margin-bottom: 1.5rem;
-}
-
-.sidebar-header {
-    padding: 1rem;
-    border-bottom: 1px solid #e1e4e8;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.sidebar-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.sidebar-item {
-    border-bottom: 1px solid #f6f8fa;
-}
-
-.sidebar-item:last-child {
-    border-bottom: none;
-}
-
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    color: #24292e;
-    text-decoration: none;
-    font-size: 0.9rem;
-    transition: background 0.2s ease;
-}
-
-.sidebar-link:hover {
-    background: #f6f8fa;
-}
-
-.sidebar-link.active {
-    background: #f0f4ff;
-    color: var(--primary-color);
-    font-weight: 500;
-}
-
-/* المحتوى الرئيسي */
-.main-content {
-    min-height: 800px;
-}
-
-/* بطاقات GitHub-like */
-.repo-card, .profile-card {
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: all 0.2s ease;
-}
-
-.repo-card:hover {
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.repo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-}
-
-.repo-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #0969da;
-    text-decoration: none;
-}
-
-.repo-title:hover {
-    text-decoration: underline;
-}
-
-.repo-stats {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.8rem;
-    color: #6a737d;
-}
-
-.repo-description {
-    color: #57606a;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-}
-
-.repo-topics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.topic-tag {
-    background: #ddf4ff;
-    color: #0969da;
-    padding: 0.2rem 0.6rem;
-    border-radius: 2rem;
-    font-size: 0.8rem;
-    text-decoration: none;
-}
-
-.topic-tag:hover {
-    background: #b6e3ff;
-}
-
-/* ===== تحسينات التجاوب ===== */
-@media (max-width: 1024px) {
-    .github-layout {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-    
-    .sidebar {
-        position: static;
-    }
-    
-    .nav-search {
-        max-width: 200px;
-        margin: 0 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 0 1rem;
-    }
-    
-    .nav-search {
-        display: none;
-    }
-    
-    .nav-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border: 1px solid #e1e4e8;
-        border-radius: 6px;
-        flex-direction: column;
-        padding: 1rem;
-        margin: 0 1rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    }
-    
-    .nav-links.show {
-        display: flex;
-    }
-    
-    .nav-toggle {
-        display: block;
-    }
-    
-    .nav-links a.active::after {
-        display: none;
-    }
-    
-    main {
-        margin-top: 70px;
-    }
-    
-    .github-layout {
-        padding: 1rem;
-    }
-}
-
-/* ===== تحسينات GitHub الإضافية ===== */
-/* رأس الملفات GitHub-like */
-.file-header {
-    background: #f6f8fa;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px 6px 0 0;
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.file-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-/* محرر الكود GitHub-like */
-.code-editor {
-    border: 1px solid #e1e4e8;
-    border-top: none;
-    border-radius: 0 0 6px 6px;
-    background: white;
-}
-
-.code-toolbar {
-    background: #f6f8fa;
-    border-bottom: 1px solid #e1e4e8;
-    padding: 0.5rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.code-content {
-    padding: 1rem;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.9rem;
-    line-height: 1.45;
-}
-
-/* علامات التبويب GitHub-like */
-.tab-nav {
-    display: flex;
-    border-bottom: 1px solid #e1e4e8;
-    margin-bottom: 1rem;
-}
-
-.tab-button {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: #6a737d;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tab-button.active {
-    color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
-    font-weight: 500;
-}
-
-.tab-button:hover {
-    color: #24292e;
-}
-
-/* إشعارات GitHub-like */
-.notification-dot {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 8px;
-    height: 8px;
-    background: #0969da;
-    border-radius: 50%;
-    border: 2px solid white;
-  }
-/* ===== تخطيط GitHub-like للمحتوى ===== */
-.github-layout {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    min-height: calc(100vh - 160px);
-}
-
-/* قسم البطل المحسن */
+/* === قسم البطل المحسن === */
 .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 3rem 2rem;
-    border-radius: 12px;
-    text-align: center;
-    margin-bottom: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .hero-section h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .hero-section p {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    max-width: 600px;
-    margin: 0 auto;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* شبكة المشاريع */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-/* شبكة المناطق */
-.regions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.region-card {
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 1.5rem;
-}
-
-.region-card h3 {
-    color: #24292e;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-}
-
-.region-list {
-    list-style: none;
-    padding: 0;
-}
-
-.region-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #f6f8fa;
-    color: #57606a;
-}
-
-.region-list li:last-child {
-    border-bottom: none;
-}
-
-/* خطوات المساهمة */
-.contribution-steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-}
-
-.step-card {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    transition: transform 0.2s ease;
-}
-
-.step-card:hover {
-    transform: translateY(-5px);
-    border-color: #0366d6;
-}
-
-.step-number {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0 auto 1rem;
-}
-
-/* تذييل الصفحة */
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 2rem;
-}
-
-.footer-section h4 {
-    margin-bottom: 1rem;
-    color: #24292e;
-}
-
-.footer-section a {
-    display: block;
-    color: #57606a;
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    transition: color 0.2s ease;
-}
-
-.footer-section a:hover {
-    color: #0366d6;
-}
-
-.footer-bottom {
-    border-top: 1px solid #e1e4e8;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    color: #57606a;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
 /* تذييل المستودع */
 .repo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #f6f8fa;
-    font-size: 0.8rem;
-    color: #6a737d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f6f8fa;
+  font-size: 0.8rem;
+  color: #6a737d;
 }
 
-/* تحسينات التجاوب */
-@media (max-width: 1024px) {
-    .github-layout {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-    }
-    
-    .sidebar {
-        display: none;
-    }
-    
-    .hero-section h1 {
-        font-size: 2rem;
-    }
-    
-    .hero-section p {
-        font-size: 1.1rem;
-    }
+.repo-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: #6a737d;
 }
 
-@media (max-width: 768px) {
-    .github-layout {
-        padding: 0.5rem;
-    }
-    
-    .hero-section {
-        padding: 2rem 1rem;
-        margin: 0.5rem;
-    }
-    
-    .hero-section h1 {
-        font-size: 1.8rem;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .regions-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .contribution-steps {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
+.repo-language {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
 }
 
-/* تحسينات الوضع الداكن */
-@media (prefers-color-scheme: dark) {
-    .region-card,
-    .step-card {
-        background: #2d2d2d;
-        border-color: #404040;
-        color: white;
-    }
-    
-    .region-card h3 {
-        color: white;
-    }
-    
-    .region-list li {
-        color: #ccc;
-        border-color: #404040;
-    }
-    
-    .repo-footer {
-        border-color: #404040;
-        color: #8b949e;
-    }
-      }
+.repo-language::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f1e05a; /* لون JavaScript */
+}
+
 /* أنماط البحث والاقتراحات */
 .search-suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    z-index: 1000;
-    display: none;
-    max-height: 300px;
-    overflow-y: auto;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  z-index: 1000;
+  display: none;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .search-suggestion {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    border-bottom: 1px solid #f6f8fa;
-    transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #f6f8fa;
+  transition: background 0.2s ease;
 }
 
 .search-suggestion:hover {
-    background: #f6f8fa;
+  background: #f6f8fa;
 }
 
 .search-suggestion:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .suggestion-icon {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .suggestion-text {
-    flex: 1;
-    font-size: 0.9rem;
-}
-
-/* تحسينات التمرير السلس */
-html {
-    scroll-behavior: smooth;
+  flex: 1;
+  font-size: 0.9rem;
 }
 
 /* تأثيرات النشاط الحي */
 @keyframes slideOutLeft {
-    from {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    to {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
 }
 
-/* تذييل المستودع المحسن */
-.repo-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid #f6f8fa;
+/* تحسينات التمرير السلس */
+html {
+  scroll-behavior: smooth;
 }
 
-.repo-meta {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.8rem;
-    color: #6a737d;
-}
-
-.repo-language {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.repo-language::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #f1e05a; /* لون JavaScript */
-}
-
-/* تحسينات التجاوب */
+/* تحسينات التجاوب الإضافية */
 @media (max-width: 768px) {
-    .repo-footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
-    }
-    
-    .repo-meta {
-        flex-direction: column;
-        gap: 0.3rem;
-        align-items: flex-start;
-    }
-    
-    .search-suggestions {
-        position: fixed;
-        top: 60px;
-        left: 1rem;
-        right: 1rem;
-    }
+  .repo-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .repo-meta {
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+  }
+  
+  .search-suggestions {
+    position: fixed;
+    top: 60px;
+    left: 1rem;
+    right: 1rem;
+  }
+  
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* تحسينات الوضع الداكن */
-.dark-mode .search-suggestions {
+@media (prefers-color-scheme: dark) {
+  .dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: white;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+  }
+  
+  .dark-mode .stat-card,
+  .dark-mode .feature-card,
+  .dark-mode .discussion-card,
+  .dark-mode .study-group-card,
+  .dark-mode .repo-card,
+  .dark-mode .sidebar-section {
+    background: var(--card-bg);
+    color: white;
+    border-color: var(--border-color);
+  }
+  
+  .dark-mode .ai-presence-indicator {
+    background: var(--card-bg);
+    color: white;
+  }
+  
+  .dark-mode .nav-links a,
+  .dark-mode .sidebar-link {
+    color: #e1e4e8;
+  }
+  
+  .dark-mode .nav-links a:hover,
+  .dark-mode .sidebar-link:hover {
+    background: #2d2d2d;
+    color: var(--primary-color);
+  }
+  
+  .dark-mode .nav-search input {
     background: #2d2d2d;
     border-color: #404040;
     color: white;
-}
-
-.dark-mode .search-suggestion {
+  }
+  
+  .dark-mode .user-menu {
+    background: #2d2d2d;
     border-color: #404040;
-}
-
-.dark-mode .search-suggestion:hover {
+    color: white;
+  }
+  
+  .dark-mode .search-suggestions {
+    background: #2d2d2d;
+    border-color: #404040;
+    color: white;
+  }
+  
+  .dark-mode .search-suggestion {
+    border-color: #404040;
+  }
+  
+  .dark-mode .search-suggestion:hover {
     background: #404040;
-}
-
-.dark-mode .repo-footer {
+  }
+  
+  .dark-mode .repo-footer {
     border-color: #404040;
+    color: #8b949e;
+  }
 }
 
-.dark-mode .repo-meta {
-    color: #8b949e;
-}
+/* تحسينات الوصول */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+  }
