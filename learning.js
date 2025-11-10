@@ -1,3 +1,18 @@
+// Animations and Progress Updates
+window.addEventListener('DOMContentLoaded', () => {
+  const progressBar = document.querySelector('.progress-bar');
+  setTimeout(() => {
+    progressBar.style.width = '35%';
+  }, 500);
+
+  document.querySelectorAll('.fade-in-up').forEach((el, i) => {
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.style.animation = 'fadeInUp 0.6s ease forwards';
+    }, i * 200);
+  });
+});
+
 // DevSahara Advanced Learning System
 class LearningSystem {
     constructor() {
