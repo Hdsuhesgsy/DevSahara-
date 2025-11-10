@@ -213,3 +213,30 @@ body {
     padding: 20px;
   }
 }
+
+/* ====== LAYOUT FIX ====== */
+.github-layout {
+  display: flex;
+  align-items: flex-start;
+}
+
+.sidebar {
+  flex: 0 0 260px;
+}
+
+.main-content-area {
+  flex: 1;
+  padding: 30px;
+  margin-left: 260px;
+}
+
+@media (max-width: 900px) {
+  .github-layout {
+    flex-direction: column;
+  }
+
+  .main-content-area {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
