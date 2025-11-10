@@ -1,234 +1,223 @@
-/* ====== RESET ====== */
+/* =====================================
+   DevSahara Learning Hub Styles
+   Modern Hybrid Animated Design
+===================================== */
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* ====== ROOT COLORS ====== */
-:root {
-  --primary: #0078ff;
-  --secondary: #0a0f1a;
-  --bg-light: #f8faff;
-  --bg-dark: #0d1117;
-  --card-light: #ffffff;
-  --card-dark: #161b22;
-  --text-light: #0d1117;
-  --text-dark: #e6edf3;
-  --border-light: #d0d7de;
-  --border-dark: #30363d;
-}
-
-/* ====== BACKGROUND ANIMATION ====== */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 25% 25%, rgba(0, 120, 255, 0.1) 0%, transparent 40%),
-              radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
-              radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.08) 0%, transparent 50%);
-  background-size: cover;
-  animation: moveBackground 30s linear infinite alternate;
-  z-index: -1;
-}
-
-@keyframes moveBackground {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(-100px, -100px); }
-}
-
-/* ====== BODY ====== */
-body {
-  display: flex;
-  min-height: 100vh;
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
-  transition: background-color 0.5s, color 0.5s;
-}
-
-/* ====== LIGHT MODE ====== */
-body.light-mode {
-  background-color: var(--bg-light);
-  color: var(--text-light);
-}
-
-/* ====== SIDEBAR ====== */
-.sidebar {
-  width: 250px;
-  background: var(--secondary);
-  border-right: 1px solid var(--border-dark);
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
   transition: all 0.3s ease;
 }
 
-.sidebar h2 {
-  color: var(--primary);
-  margin-bottom: 20px;
+/* Root variables */
+:root {
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --light-bg: #f8fafc;
+  --dark-bg: #0f172a;
+  --text-dark: #1e293b;
+  --text-light: #f8fafc;
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.sidebar ul {
-  list-style: none;
+/* Dark mode */
+body.dark-mode {
+  background: var(--dark-bg);
+  color: var(--text-light);
 }
 
-.sidebar ul li {
-  padding: 12px 10px;
-  border-radius: 8px;
-  cursor: pointer;
+/* Light mode */
+body.light-mode {
+  background: var(--light-bg);
   color: var(--text-dark);
-  transition: all 0.2s ease;
 }
 
-.sidebar ul li.active,
-.sidebar ul li:hover {
-  background: var(--primary);
+/* Header */
+header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--gradient);
   color: white;
+  border-radius: 0 0 25px 25px;
+  box-shadow: var(--shadow);
+  animation: fadeInDown 0.7s ease;
 }
 
-/* ====== MAIN CONTENT ====== */
-.main-content {
-  margin-left: 250px;
-  padding: 30px;
-  width: calc(100% - 250px);
-}
-
-/* ====== HEADER ====== */
-.header {
+/* Navigation */
+nav {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--card-dark);
-  padding: 15px 25px;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  transition: background 0.5s;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
 }
 
-body.light-mode .header {
-  background: var(--card-light);
-}
-
-.header .logo {
-  font-size: 1.4rem;
-  color: var(--primary);
-  font-weight: 600;
-}
-
-.header .actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.toggle-theme {
-  background: var(--primary);
-  border: none;
+nav a {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  background: var(--gradient);
   color: white;
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
+  box-shadow: var(--shadow);
   transition: transform 0.3s;
 }
 
-.toggle-theme:hover {
-  transform: rotate(180deg);
-}
-
-/* ====== CARDS ====== */
-.card {
-  background: var(--card-dark);
-  border: 1px solid var(--border-dark);
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 25px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s;
-}
-
-body.light-mode .card {
-  background: var(--card-light);
-  border: 1px solid var(--border-light);
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 20px rgba(0, 120, 255, 0.15);
-}
-
-.card h4 {
-  color: var(--primary);
-  margin-bottom: 8px;
-}
-
-/* ====== LEARNING PAGE HEADER ====== */
-.learning-header {
-  text-align: center;
-  background: linear-gradient(135deg, var(--primary), transparent);
-  padding: 60px 20px;
-  border-radius: 15px;
-  margin-bottom: 40px;
-  color: white;
-  animation: fadeIn 1.2s ease;
-}
-
-.learning-header h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.learning-header p {
+nav a:hover {
+  transform: scale(1.05);
   opacity: 0.9;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-15px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Sections */
+section {
+  margin: 3rem auto;
+  max-width: 1100px;
+  padding: 1.5rem;
 }
 
-/* ====== RESPONSIVE ====== */
-@media (max-width: 900px) {
-  .sidebar {
-    width: 200px;
-  }
+/* Learning Path Progress */
+.learning-path {
+  background: var(--gradient);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
 
-  .main-content {
-    margin-left: 200px;
-    width: calc(100% - 200px);
+.progress-container {
+  background: rgba(255,255,255,0.2);
+  border-radius: 15px;
+  height: 10px;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  background: white;
+  height: 100%;
+  border-radius: 15px;
+  width: 0;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .feature-card {
+  background: #1e293b;
+  color: var(--text-light);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Active Lessons */
+.project-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+body.dark-mode .project-card {
+  background: #1e293b;
+}
+
+/* Buttons */
+.btn {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--success);
+}
+
+/* Code Playground */
+.interactive-editor {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 15px;
+  color: white;
+  font-family: "Courier New", monospace;
+  box-shadow: var(--shadow);
+}
+
+.code-output {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  min-height: 120px;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--gradient);
+  color: white;
+  margin-top: 3rem;
+  border-radius: 25px 25px 0 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (max-width: 700px) {
-  body {
-    flex-direction: column;
-  }
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
 
-  .sidebar {
-    position: relative;
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: space-around;
-    border-right: none;
-    border-bottom: 1px solid var(--border-dark);
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
-
-  .main-content {
-    margin: 0;
-    width: 100%;
-    padding: 20px;
-  }
-
-  .header {
-    flex-direction: column;
-    gap: 10px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
