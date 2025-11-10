@@ -1,74 +1,97 @@
-// ====== MOBILE MENU TOGGLE ======
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.navbar ul');
+// =============================
+//  Hybrid Theme + Animations JS
+// =============================
 
-if (menuToggle) {
-  menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    menuToggle.classList.toggle('open');
-  });
+// عناصر من الصفحة
+const themeToggleBtn = document.querySelector('.theme-toggle');
+const body = document.body;
+const sidebar = document.querySelector('.sidebar');
+const main = document.querySelector('main');
+const header = document.querySelector('header');
+
+// =============================
+//  نظام التبديل التلقائي بين الوضعين
+// =============================
+function setTheme(mode) {
+  if (mode === 'dark') {
+    body.classList.add('dark-mode');
+    body.classList.remove('light-mode');
+    localStorage.setItem('theme', 'dark');
+  } else {
+    body.classList.add('light-mode');
+    body.classList.remove('dark-mode');
+    localStorage.setItem('theme', 'light');
+  }
 }
 
-// ====== SMOOTH SCROLLING ======
-const links = document.querySelectorAll('a[href^="#"]');
+// الكشف عن الوقت الحالي لتحديد الوضع
+function detectSystemTheme() {
+  const hour = new Date().getHours();
+  if (hour >= 7 && hour < 19) {
+    setTheme('light');
+  } else {
+    setTheme('dark');
+  }
+}
 
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+// عند التحميل الأول
+if (localStorage.getItem('theme')) {
+  setTheme(localStorage.getItem('theme'));
+} else {
+  detectSystemTheme();
+}
+
+// عند الضغط على الزر
+themeToggleBtn.addEventListener('click', () => {
+  if (body.classList.contains('dark-mode')) {
+    setTheme('light');
+  } else {
+    setTheme('dark');
+  }
+
+  // حركة الزر
+  themeToggleBtn.classList.add('clicked');
+  setTimeout(() => {
+    themeToggleBtn.classList.remove('clicked');
+  }, 400);
+});
+
+// =============================
+//  حركة الظهور التدريجي للمحتوى
+// =============================
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.card, .header, .sidebar, main').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      el.style.transition = 'all 0.7s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, i * 150);
   });
 });
 
-// ====== SCROLL ANIMATION (fade-in) ======
-const fadeElements = document.querySelectorAll('.fade-in');
-
-function checkFadeIn() {
-  const triggerBottom = window.innerHeight * 0.85;
-
-  fadeElements.forEach(el => {
-    const boxTop = el.getBoundingClientRect().top;
-    if (boxTop < triggerBottom) {
-      el.classList.add('show');
-    } else {
-      el.classList.remove('show');
-    }
+// =============================
+//  حركة الشريط الجانبي (عند الشاشات الصغيرة)
+// =============================
+const menuBtn = document.querySelector('.menu-toggle');
+if (menuBtn) {
+  menuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
   });
 }
 
-window.addEventListener('scroll', checkFadeIn);
-window.addEventListener('load', checkFadeIn);
-
-// ====== ACTIVE NAV ITEM HIGHLIGHT ======
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.navbar ul li a');
-
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 150;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
+// =============================
+//  تأثيرات Hover للأزرار والبطاقات
+// =============================
+document.querySelectorAll('button, .card').forEach((el) => {
+  el.addEventListener('mouseenter', () => {
+    el.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+    el.style.transform = 'translateY(-3px) scale(1.02)';
+    el.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.15)';
   });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-});
-
-// ====== BUTTON CLICK FEEDBACK ======
-const buttons = document.querySelectorAll('.btn');
-buttons.forEach(btn => {
-  btn.addEventListener('mousedown', () => {
-    btn.style.transform = 'scale(0.95)';
-  });
-  btn.addEventListener('mouseup', () => {
-    btn.style.transform = 'scale(1)';
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'translateY(0) scale(1)';
+    el.style.boxShadow = 'none';
   });
 });
