@@ -1,97 +1,116 @@
-// =============================
-//  Hybrid Theme + Animations JS
-// =============================
-
-// عناصر من الصفحة
-const themeToggleBtn = document.querySelector('.theme-toggle');
+// عناصر DOM
+const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-const sidebar = document.querySelector('.sidebar');
-const main = document.querySelector('main');
 const header = document.querySelector('header');
+const hero = document.querySelector('.hero');
 
-// =============================
-//  نظام التبديل التلقائي بين الوضعين
-// =============================
+// ---------- 1. نظام الوضع الليلي/النهاري ----------
 function setTheme(mode) {
   if (mode === 'dark') {
-    body.classList.add('dark-mode');
-    body.classList.remove('light-mode');
+    body.classList.add('dark');
     localStorage.setItem('theme', 'dark');
   } else {
-    body.classList.add('light-mode');
-    body.classList.remove('dark-mode');
+    body.classList.remove('dark');
     localStorage.setItem('theme', 'light');
   }
 }
 
-// الكشف عن الوقت الحالي لتحديد الوضع
-function detectSystemTheme() {
-  const hour = new Date().getHours();
-  if (hour >= 7 && hour < 19) {
-    setTheme('light');
-  } else {
-    setTheme('dark');
-  }
+function toggleTheme() {
+  const current = body.classList.contains('dark') ? 'dark' : 'light';
+  setTheme(current === 'dark' ? 'light' : 'dark');
 }
 
-// عند التحميل الأول
-if (localStorage.getItem('theme')) {
-  setTheme(localStorage.getItem('theme'));
+themeToggle.addEventListener('click', toggleTheme);
+
+// ضبط الوضع حسب الوقت أو الإعداد المحفوظ
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  setTheme(savedTheme);
 } else {
-  detectSystemTheme();
+  const hour = new Date().getHours();
+  if (hour >= 18 || hour < 6) setTheme('dark');
+  else setTheme('light');
 }
 
-// عند الضغط على الزر
-themeToggleBtn.addEventListener('click', () => {
-  if (body.classList.contains('dark-mode')) {
-    setTheme('light');
-  } else {
-    setTheme('dark');
+// ---------- 2. خلفية متحركة خفيفة ----------
+const canvas = document.createElement('canvas');
+canvas.classList.add('background-animation');
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext('2d');
+let particles = [];
+const numParticles = 60;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = Math.random() * 0.8 - 0.4;
+    this.speedY = Math.random() * 0.8 - 0.4;
   }
-
-  // حركة الزر
-  themeToggleBtn.classList.add('clicked');
-  setTimeout(() => {
-    themeToggleBtn.classList.remove('clicked');
-  }, 400);
-});
-
-// =============================
-//  حركة الظهور التدريجي للمحتوى
-// =============================
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.card, .header, .sidebar, main').forEach((el, i) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-      el.style.transition = 'all 0.7s ease';
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, i * 150);
-  });
-});
-
-// =============================
-//  حركة الشريط الجانبي (عند الشاشات الصغيرة)
-// =============================
-const menuBtn = document.querySelector('.menu-toggle');
-if (menuBtn) {
-  menuBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+  }
+  draw() {
+    ctx.fillStyle = body.classList.contains('dark')
+      ? 'rgba(255,255,255,0.15)'
+      : 'rgba(0,0,0,0.1)';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
-// =============================
-//  تأثيرات Hover للأزرار والبطاقات
-// =============================
-document.querySelectorAll('button, .card').forEach((el) => {
-  el.addEventListener('mouseenter', () => {
-    el.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
-    el.style.transform = 'translateY(-3px) scale(1.02)';
-    el.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.15)';
+function initParticles() {
+  particles = [];
+  for (let i = 0; i < numParticles; i++) {
+    particles.push(new Particle());
+  }
+}
+initParticles();
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.update();
+    p.draw();
   });
-  el.addEventListener('mouseleave', () => {
-    el.style.transform = 'translateY(0) scale(1)';
-    el.style.boxShadow = 'none';
-  });
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ---------- 3. تأثيرات التمرير (Scroll animations) ----------
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+document.querySelectorAll('.fade-in, .slide-up, .slide-left').forEach(el => {
+  observer.observe(el);
+});
+
+// ---------- 4. تأثير التمرير في الهيدر ----------
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
 });
