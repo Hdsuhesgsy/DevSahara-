@@ -1,0 +1,223 @@
+/* =====================================
+   DevSahara Learning Hub Styles
+   Modern Hybrid Animated Design
+===================================== */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Root variables */
+:root {
+  --primary: #4f46e5;
+  --secondary: #06b6d4;
+  --success: #22c55e;
+  --danger: #ef4444;
+  --light-bg: #f8fafc;
+  --dark-bg: #0f172a;
+  --text-dark: #1e293b;
+  --text-light: #f8fafc;
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode */
+body.dark-mode {
+  background: var(--dark-bg);
+  color: var(--text-light);
+}
+
+/* Light mode */
+body.light-mode {
+  background: var(--light-bg);
+  color: var(--text-dark);
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: var(--gradient);
+  color: white;
+  border-radius: 0 0 25px 25px;
+  box-shadow: var(--shadow);
+  animation: fadeInDown 0.7s ease;
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+nav a {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  background: var(--gradient);
+  color: white;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+}
+
+nav a:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Sections */
+section {
+  margin: 3rem auto;
+  max-width: 1100px;
+  padding: 1.5rem;
+}
+
+/* Learning Path Progress */
+.learning-path {
+  background: var(--gradient);
+  color: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.progress-container {
+  background: rgba(255,255,255,0.2);
+  border-radius: 15px;
+  height: 10px;
+  margin: 1rem 0;
+}
+
+.progress-bar {
+  background: white;
+  height: 100%;
+  border-radius: 15px;
+  width: 0;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .feature-card {
+  background: #1e293b;
+  color: var(--text-light);
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Active Lessons */
+.project-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1rem;
+}
+
+body.dark-mode .project-card {
+  background: #1e293b;
+}
+
+/* Buttons */
+.btn {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background: var(--success);
+}
+
+/* Code Playground */
+.interactive-editor {
+  background: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 15px;
+  color: white;
+  font-family: "Courier New", monospace;
+  box-shadow: var(--shadow);
+}
+
+.code-output {
+  background: #0f172a;
+  color: #22c55e;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  min-height: 120px;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: var(--gradient);
+  color: white;
+  margin-top: 3rem;
+  border-radius: 25px 25px 0 0;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
