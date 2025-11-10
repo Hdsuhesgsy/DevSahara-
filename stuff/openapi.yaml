@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: DevSahara API (Mock)
+  version: "0.1.0"
+servers:
+  - url: http://localhost:4000
+paths:
+  /api/repos:
+    get:
+      summary: List repos
+      responses:
+        '200':
+          description: repo list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repo'
+  /api/repos/{repoId}/files:
+    get:
+      summary: List files for repo
+      parameters:
+        - name: repoId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/File'
+  /api/repos/{repoId}/file:
+    post:
+      summary: Get single file content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                path:
+                  type: string
+      responses:
+        '200':
+          description: file content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileContent'
+  /api/ai/code-complete:
+    post:
+      summary: AI code completion (mock)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repoId:
+                  type: string
+                path:
+                  type: string
+                codeContext:
+                  type: string
+      responses:
+        '200':
+          description: completion result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Completion'
+  /api/ai/code-review:
+    post:
+      summary: AI code review (mock)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                repoId:
+                  type: string
+                path:
+                  type: string
+                fileContent:
+                  type: string
+      responses:
+        '200':
+          description: review result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CodeReview'
+  /api/ai/run:
+    post:
+      summary: Run code in sandbox (mock)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                language:
+                  type: string
+                code:
+                  type: string
+      responses:
+        '200':
+          description: run result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  stdout:
+                    type: string
+components:
+  schemas:
+    Repo:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    File:
+      type: object
+      properties:
+        path:
+          type: string
+        type:
+          type: string
+    FileContent:
+      type: object
+      properties:
+        path:
+          type: string
+        content:
+          type: string
+    Completion:
+      type: object
+      properties:
+        suggestion:
+          type: string
+        confidence:
+          type: number
+    CodeReview:
+      type: object
+      properties:
+        summary:
+          type: string
+        issues:
+          type: array
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+              severity:
+                type: string
+              message:
+                type: string
